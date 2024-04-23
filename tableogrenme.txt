@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>table öğreniyorum</title>
+</head>
+<body>
+         <table border="20" width="400" height="200">
+         	<tr>
+         		<td>Pazartesi</td>
+         		<td>Salı</td>
+         		<td>Çarş</td>
+         		<td>Perşembe</td>
+         		<td>Cuma</td>
+         		<td>Cumartesi</td>
+         	    <td>Pazar</td>
+
+
+         	</tr>
+         	<tr>
+         		<td>Spor</td>
+         		<td>Ders</td>
+         		<td>Spor</td>
+         		<td>Ders</td>
+         		<td>Spor</td>
+         		<td>Kurs</td>
+         		<td>Tatil</td>
+         	</tr>
+         	<tr>
+         		<td>valorant</td>
+         		<td>Ders</td>
+         		<td>Dizi</td>
+         		<td>Ders</td>
+         		<td>Tiyatro</td>
+         		<td>Kurs</td>
+         		<td>Tatil</td>
+         	</tr>
+         	<tr>
+         		<td>Ders</td>
+         		<td>Gezi</td>
+         		<td>Spor</td>
+         		<td>Bisiklet</td>
+         		<td>Ders</td>
+         		<td>Kurs</td>
+         		<td>Tatil</td>
+         	</tr>
+
+
+         </table>
+
+
+</body>
+</html>

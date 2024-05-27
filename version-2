@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKEH - Vücut Kitle Endeksi Hesaplayıcı</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2; /* Gri arka plan rengi */
+        }
+        #container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #fff; /* Beyaz form arka plan rengi */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5); /* Gölge efekti */
+        }
+        #header {
+            background-color: #3b883e; /* Yeşil header arka plan rengi */
+            color: white;
+            padding: 20px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        #bmi-form {
+            margin-top: 20px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #meal-plan {
+            margin-top: 20px;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #meal-plan h2 {
+            text-align: center;
+            color: #3b883e;
+        }
+        #bottom-image {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>VKEH - Vücut Kitle Endeksi Hesaplayıcı</h1>
+        </div>
+
+        <div id="bmi-form">
+            <h2>Vücut Kitle Endeksi Hesaplayıcı</h2>
+            <form method="POST" action="">
+                <label for="weight">Kilonuz (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+                <label for="height">Boyunuz (cm cinsinden):</label>
+                <input type="number" id="height" name="height" required>
+                <button type="submit">Hesapla</button>
+            </form>
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $weight = floatval($_POST['weight']);
+                $height = floatval($_POST['height']) / 100; // cm cinsinden girilen boyu metre cinsine çevir
+
+                if ($weight > 0 && $height > 0) {
+                    $bmi = $weight / ($height * $height);
+                    $bmiCategory = "";
+                    $imageUrl = "";
+
+                    if ($bmi < 18.5) {
+                        $bmiCategory = "Zayıf";
+                        $mealPlan = "Zayıf olmanız nedeniyle daha fazla kalori alımı önerilir. Önerilen yemekler: Bol karbonhidratlı yiyecekler, yağlı balıklar, kuruyemişler.";
+                        $imageUrl = "https://github.com/EMREUZN0/Diyet-Programlama/blob/master/Diyet%20Listeleri/zay%C4%B1f.png?raw=true";
+                    } elseif ($bmi < 25) {
+                        $bmiCategory = "Normal";
+                        $mealPlan = "Normal kiloda olduğunuz için dengeli beslenmeye devam etmelisiniz. Önerilen yemekler: Sebze, meyve, tam tahıllı ürünler, protein kaynakları.";
+                        $imageUrl = "https://github.com/EMREUZN0/Diyet-Programlama/blob/master/Diyet%20Listeleri/normal.png?raw=true";
+                    } elseif ($bmi < 30) {
+                        $bmiCategory = "Kilolu";
+                        $mealPlan = "Kilolu olduğunuz için dengeli bir diyete başlamalısınız. Önerilen yemekler: Düşük yağlı süt ürünleri, sebzeler, lifli gıdalar.";
+                        $imageUrl = "https://github.com/EMREUZN0/Diyet-Programlama/blob/master/Diyet%20Listeleri/kilolu.png?raw=true";
+                    } elseif ($bmi < 35) {
+                        $bmiCategory = "Obez";
+                        $mealPlan = "Obez olduğunuz için dengeli bir diyete başlamalısınız. Önerilen yemekler: Düşük yağlı süt ürünleri, sebzeler, lifli gıdalar.";
+                        $imageUrl = "https://github.com/EMREUZN0/Diyet-Programlama/blob/master/Diyet%20Listeleri/obez.png?raw=true";
+                    } else {
+                        $bmiCategory = "Morbid Obez";
+                        $mealPlan = "Morbid Obez olduğunuz için çok dikkatli olmalısınız düşük kalorili bir diyet yapmalısınız. Önerilen yemekler: Taze sebzeler, meyveler, yağsız proteinler.";
+                        $imageUrl = "https://github.com/EMREUZN0/Diyet-Programlama/blob/master/Diyet%20Listeleri/morbit%20obez.png?raw=true";
+                    }
+
+                    echo "<p id='result'>Vücut Kitle Endeksiniz: " . number_format($bmi, 2) . " (" . $bmiCategory . ")</p>";
+                    echo "<div id='meal-plan'><h2>1 Haftalık Yemek Programınız Aşağıda Verilmiştir</h2><p id='meal-plan-content'>$mealPlan</p></div>";
+                    echo "<div id='bottom-image'><img src='$imageUrl' alt='$bmiCategory Resmi'></div>";
+                } else {
+                    echo "<p id='result'>Lütfen geçerli kilo ve boy değerleri girin.</p>";
+                }
+            }
+            ?>
+        </div>
+    </div>
+</body>
+</html>

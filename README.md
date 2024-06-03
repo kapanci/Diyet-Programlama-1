@@ -1,6 +1,6 @@
 ## Açıklama
 
-Bu proje, çeşitli diyet listelerini ve vücut kitle indeksi hesaplama gibi araçları içermektedir. Kullanıcılar, farklı diyet listelerine erişebilir ve kendi ihtiyaçlarına uygun olanları seçebilirler.
+Bu proje diyet programlama için , çeşitli diyet listelerini ve vücut kitle indeksi hesaplama gibi araçları içermektedir. Kullanıcılar, farklı diyet listelerine erişebilir ve kendi ihtiyaçlarına uygun olanları seçebilirler.
 
 ## Dosya Yapısı
 
